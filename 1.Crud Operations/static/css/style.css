@@ -1,0 +1,13 @@
+table{
+    width: 100%;
+    }
+   th, td {
+     padding: 5px;
+     font-family:"calibri"
+   }
+.regis{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 15px;
+}

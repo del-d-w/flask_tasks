@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Register</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+        <!-- Google Fonts -->
+        <link href='https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css'>
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+       </head>
+<body>
+    <div class="container">
+        <div class="row">
+        <div class="col-md-4">
+        <form action="/update/{{user.id}}" method="post">
+            <table>
+                <tr>
+                    <td>First Name</td>
+                    <td><input class="form-control form-control-md" type="text" name="firstname" value="{{user.firstname}}"></td>
+                </tr>
+                <tr>
+                    <td>Last Name</td>
+                    <td><input class="form-control form-control-md" type="text" name="lastname" value="{{user.lastname}}"/></td>
+                </tr>
+                <tr>
+                    <td>Email</td>
+                    <td><input class="form-control form-control-md" type="text" name="email" value="{{user.email}}"/></td>
+                </tr>
+                <tr>
+                    <td>Password</td>
+                    <td><input class="form-control form-control-md" type="password" name="password" value="{{user.password}}"/></td>
+                </tr>
+                <tr>
+                    <td>Gender</td>
+                    <td>
+                    <input type="radio" name="gender" value="male"
+                    {% if user.gender=='male' %}
+                    checked
+                    {% endif %}/> Male
+                    
+                    <input type="radio" name="gender" value="female"
+                    {% if user.gender=='female' %}
+                    checked
+                    {% endif %} /> Female
+                </td>
+                </tr>
+                <tr>
+                    <td>Hobbies</td>
+                    <td>
+                     <input type="checkbox" name="hobbies" value="cricket"
+                    {% if 'cricket' in user.hobbies %}
+                    checked
+                    {% endif %}
+                    /> Cricket
+                    <input type="checkbox" name="hobbies" value="movies" 
+                    {% if 'movies' in user.hobbies %}
+                    checked
+                    {% endif %}
+                    /> Movies
+                    <input type="checkbox" name="hobbies" value="tv"
+                    {% if 'tv' in user.hobbies %}
+                    checked
+                    {% endif %}/> TV
+                </td>
+                </tr>
+                <tr>
+                    <td>Country</td>
+                    <td>
+                        <select name="country" class="form-control form-control-md">
+                            <option value="india" 
+                            {% if 'india' in user.country %}
+                            selected
+                            {% endif %}>India</option>
+                            <option value="usa" {% if 'usa' in user.country %}
+                            selected
+                            {% endif %}>USA</option>
+                            <option value="australia" {% if 'australia' in user.country %}
+                            selected
+                            {% endif %}>Australia</option>
+                        </select>
+                </td>
+                </tr>
+                <tr>
+                    <td colspan="2"> 
+                        <button type="submit"  class="btn btn-info">Update</button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+        
+    </div>
+</div>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
+</body>
+</html>
