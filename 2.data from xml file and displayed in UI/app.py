@@ -42,7 +42,13 @@ def home_page():
             elif j.get('@severity')=='3':
                 j['@severity']='Critical'
             c.append(j)
-    return render_template("home.html",data=c)
+    result = list(
+    {
+        dictionary['@pluginID']: dictionary
+        for dictionary in c
+    }.values()
+)
+    return render_template("home.html",data=result)
 
 @app.route('/plugindetails/<string:id>')
 def plugin_details(id):
