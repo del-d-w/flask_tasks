@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Plugin Details</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>  
+    
+    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
+</head>
+<body>
+    <div style="background-color:#f2f2f2;padding:20px;">
+        <div class="container shadow-lg pl-5 pr-5 mb-5 pt-3 pb-3 bg-white rounded">
+            <div class="row">
+                <div class="col-11">
+                    <h1 style="font-weight: calibri;font-size:20px;" class="mb-4">Plugin Information</h1>
+                </div>
+                <div class="col-1">
+                    <a  href="{{url_for('home_page')}}"><button class="pt-1 pb-1 pl-2 pr-2" style="border: none;">X</button></a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-9">
+                    <p>Plugin Name: </p>
+                    <p class="alert-dark p-2">{{data.get('@pluginName')}}</p>
+                </div>
+                <div class="col-3">
+                    <p>Plugin Family</p>
+                    <p class="alert-dark p-2"> {{data.get('@pluginFamily')}}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-9">
+                    <p>Alternate Plugin Name</p>
+                    <p class="alert-dark p-2">{{data.get('plugin_name')}}</p>
+                </div>
+                <div class="col-3">
+                    <p>Plugin ID:</p>
+                    <p class="alert-dark p-2"> {{data.get('@pluginID')}}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-4">
+                    <p>Plugin Publish Date:</p>
+                    <p class="alert-dark p-2"> {{data.get('plugin_publication_date')}}</p>
+                </div>
+                <div class="col-4">
+                    <p>Plugin Modification Date: </p>
+                    <p class="alert-dark p-2">{{data.get('plugin_modification_date')}}</p>
+                </div>
+                <div class="col-4">
+                    <p>Plugin Risk Factor: </p>
+                    <p class="alert-dark p-2">{{data.get('risk_factor')}}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-4">
+                    <p>Plugin Type: </p>
+                    <p class="alert-dark p-2">{{data.get('plugin_type')}}</p>
+                </div>
+                <div class="col-4">
+                    <p>Plugin Script Version:</p>
+                    <p class="alert-dark p-2"> {{data.get('script_version')}}</p>
+                </div>
+                <div class="col-4">
+                    <p>Plugin Function Name:</p>
+                    <p class="alert-dark p-2"> {{data.get('fname')}}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <p>Plugin Description:</p>
+                    <p class="alert-dark p-2">{{data.get('description')}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
