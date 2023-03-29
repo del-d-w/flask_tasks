@@ -3,6 +3,10 @@ sqlite3 kpi.db
 .database
 creating tables
 .tables
+.mode column
+SELECT * FROM employee;
+.headers on
+SELECT * FROM employee;
 """
 
 from flask import Flask,render_template,request,redirect,url_for,flash
