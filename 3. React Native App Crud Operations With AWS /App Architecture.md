@@ -41,3 +41,6 @@ The API Gateway then sends the response back to the frontend.
 Overall, the architecture follows a serverless approach using AWS Lambda and API Gateway to handle the backend 
 logic and API communication, while the React Native frontend interacts with the API to provide a user-friendly 
 interface for managing the todo list. The PostgreSQL database stores and retrieves the todo items.
+
+![image](https://github.com/MBhargavi235/flask_tasks/assets/106804698/1ebb03f8-8e2d-4bf7-9109-e102d81f0f29)
+
