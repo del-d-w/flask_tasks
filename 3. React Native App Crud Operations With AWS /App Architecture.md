@@ -1,4 +1,4 @@
-The architecture of the above app consists of the following components:
+The architecture of the this app consists of the following components:
 
 Frontend:
 
