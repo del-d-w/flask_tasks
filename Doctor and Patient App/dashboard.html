@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <style>
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            background-color: #f2f2f2;
+        }
+
+        .logout-btn {
+            padding: 8px 16px;
+            background-color: #ff0000;
+            color: #ffffff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="navbar">
+            <h2 id="welcomeMessage"></h2>
+            <button class="logout-btn" id="logoutBtn">Logout</button>
+        </div>
+    </div>
+
+    <script>
+        const logoutBtn = document.getElementById('logoutBtn');
+        const welcomeMessage = document.getElementById('welcomeMessage');
+
+        logoutBtn.addEventListener('click', () => {
+            window.location.href = 'C:/Users/Admin/Desktop/flaskAccessToken/loginregistration.html';
+        });
+        const responseMessage = localStorage.getItem('message'); 
+
+        let userType = '';
+        if (responseMessage.includes('Doctor')) {
+            userType = 'Doctor';
+        } else if (responseMessage.includes('Patient')) {
+            userType = 'Patient';
+        }
+
+        welcomeMessage.textContent = `Welcome ${userType} to the Dashboard`;
+
+    
+    </script>
+</body>
+</html>
