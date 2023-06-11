@@ -6,12 +6,13 @@ logoutBtn.addEventListener("click", () => {
     "C:/Users/Admin/Desktop/flaskAccessToken/loginAndRegistration.html";
 });
 const responseMessage = localStorage.getItem("message");
-
+const name = responseMessage.split(' ')[1];
 let userType = "";
 if (responseMessage.includes("Doctor")) {
-  userType = "Doctor";
+  userType = "Doctor " + name;
 } else if (responseMessage.includes("Patient")) {
-  userType = "Patient";
+  userType = name;
 }
+
 
 welcomeMessage.textContent = `Welcome ${userType} to the Dashboard`;
