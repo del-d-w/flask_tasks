@@ -2,9 +2,9 @@ from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
 
-#pip install flask-cors
-#pip install Flask-SQLAlchemy
-#pip install flask
+# pip install flask-cors
+# pip install Flask-SQLAlchemy
+# pip install flask
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:12345@localhost/employees'
@@ -86,12 +86,12 @@ def login():
     # Check if the user is a doctor
     doctor = Doctor.query.filter_by(username=username, password=password).first()
     if doctor:
-        return jsonify({'message': 'Doctor login successful!'}), 200
+        return jsonify({'message': f'Doctor {username} login successful!'}), 200
 
     # Check if the user is a patient
     patient = Patient.query.filter_by(username=username, password=password).first()
     if patient:
-        return jsonify({'message': 'Patient login successful!'}), 200
+        return jsonify({'message': f'Patient {username} login successful!'}), 200
 
     return jsonify({'message': 'Invalid credentials!'}), 401
 
