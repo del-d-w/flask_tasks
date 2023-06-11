@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <style>
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            background-color: #f2f2f2;
+        }
+
+        .logout-btn {
+            padding: 8px 16px;
+            background-color: #ff0000;
+            color: #ffffff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="navbar">
+            <h2>Welcome to the Dashboard</h2>
+            <button class="logout-btn" id="logoutBtn">Logout</button>
+        </div>
+        <div id="todoList"></div>
+    </div>
+
+    <script>
+        const logoutBtn = document.getElementById('logoutBtn');
+        logoutBtn.addEventListener('click', () => {
+            localStorage.removeItem('accessToken');
+            window.location.href = 'file:///C:/Users/Admin/Desktop/flaskAccessToken/login.html';
+        });
+        // Fetch todos and populate the todo list
+        const accessToken = localStorage.getItem('accessToken');
+        fetch('http://127.0.0.1:5000/todos', {
+            headers: {
+                Authorization: `Bearer ${accessToken}`,
+            },
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Handle the response from the server
+            console.log(data); // You can customize this part based on your needs
+            // Example: Render the todos in the list
+            data.forEach(todo => {
+                const todoItem = document.createElement('div');
+                todoItem.textContent = todo.title;
+                todoList.appendChild(todoItem);
+            });
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            // Handle any errors that occur during the fetch process
+        });
+    </script>
+</body>
+</html>
