@@ -20,7 +20,7 @@ loginForm.addEventListener("submit", (event) => {
       console.log(data);
       localStorage.setItem("message", data.message);
       window.location.href =
-        "file:///C:/Users/Admin/Desktop/flaskAccessToken/dashboard.html";
+        "C:/Users/Admin/Desktop/flaskAccessToken/dashboard.html";
     })
     .catch((error) => {
       console.error("Error:", error);
