@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Image Upload Form</title>
+    <style>
+        /* Style the form container */
+        #uploadForm {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        input[type=file]::file-selector-button {
+            border: 2px solid #6c5ce7;
+            border-radius: 2px;
+            background-color: #a29bfe;
+            transition: 1s;
+            height: 30px;
+            width: 100px;
+          }
+          
+          input[type=file]::file-selector-button:hover {
+            background-color: #81ecec;
+            border: 2px solid #00cec9;
+          }
+    
+        /* Style the file input */
+        #imageInput {
+            margin-bottom: 10px;
+        }
+    
+        /* Style the submit button */
+        #uploadForm input[type="submit"] {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+    
+        /* Style the submit button on hover */
+        #uploadForm input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+    
+</head>
+
+<body>
+
+    <form id="uploadForm">
+        <input type="file" id="imageInput" name="image" accept="image/*" required>
+        <br/>
+        <input type="submit" value="Upload">
+        <br/><br/>
+    </form>
+
+    <div id="imageContainer"></div>
+
+    <script>
+        function fetchImages() {
+            fetch('http://127.0.0.1:5000/image')
+                .then(response => response.json())
+                .then(data => {
+                    var imageContainer = document.getElementById('imageContainer');
+                    imageContainer.innerHTML = '';
+
+                    data.forEach(imageData => {
+                        var imgElement = document.createElement('img');
+                        imgElement.src = 'data:image/jpeg;base64,' + imageData;
+                        imgElement.style.height = '250px';
+                        imgElement.style.width = '300px';
+                        imgElement.style.margin = '10px';
+                        imageContainer.appendChild(imgElement);
+                    });
+                })
+                .catch(error => {
+                    console.log('Error fetching images:', error);
+                });
+        }
+
+        fetchImages()
+
+        document.getElementById('uploadForm').addEventListener('submit', function (event) {
+            event.preventDefault(); // Prevent form submission
+
+            var fileInput = document.getElementById('imageInput');
+            var file = fileInput.files[0];
+
+            var formData = new FormData();
+            formData.append('image', file);
+
+            fetch('http://127.0.0.1:5000/images', {
+                method: 'POST',
+                body: formData
+            })
+                .then(response => {
+                    if (response.ok) {
+                        alert('Image uploaded successfully');
+                        document.getElementById('uploadForm').reset();
+                        fetchImages()
+                    } else {
+                        alert('Error uploading image');
+                    }
+                })
+                .catch(error => {
+                    console.log('Error uploading image:', error);
+                });
+        });
+
+        
+    </script>
+</body>
+
+</html>
