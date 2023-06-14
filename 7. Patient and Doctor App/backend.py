@@ -99,3 +99,117 @@ if __name__ == '__main__':
     with app.app_context():
         db.create_all()
     app.run(debug=True)
+
+"""
+# With out SQL Alchemy
+
+from flask import Flask, request, jsonify
+import psycopg2
+from flask_cors import CORS
+
+app = Flask(__name__)
+CORS(app)
+
+# Database connection details
+conn = psycopg2.connect(
+    host='localhost',
+    port='5432',
+    database='practice',
+    user='postgres',
+    password='12345'
+)
+
+# Doctor Registration Endpoint
+@app.route('/register/doctor', methods=['POST'])
+def register_doctor():
+    data = request.get_json()
+    cursor = conn.cursor()
+
+    # Extract data from the request
+    first_name = data['first_name']
+    last_name = data['last_name']
+    dob = data['dob']
+    phone_number = data['phone_number']
+    password = data['password']
+    address = data['address']
+    doctor_id=data['doctor_id']
+    specialization = data['specialization']
+    user_name = data['user_name']
+    email_id = data['email_id']
+
+    # Execute the SQL query to insert a new doctor
+    cursor.execute(
+        "INSERT INTO information.doctor_registration (first_name, last_name, dob, phone_number, password, address,doctor_id, specialization, user_name, email_id) "
+        "VALUES (%s, %s, %s, %s, %s, %s, %s, %s,%s,%s)",
+        (first_name, last_name, dob, phone_number, password, address,doctor_id, specialization, user_name, email_id)
+    )
+    conn.commit()
+    cursor.close()
+
+    return jsonify({'message': 'Doctor registered successfully!'}), 200
+
+# Patient Registration Endpoint
+@app.route('/register/patient', methods=['POST'])
+def register_patient():
+    data = request.get_json()
+    cursor = conn.cursor()
+
+    # Extract data from the request
+    first_name = data['first_name']
+    last_name = data['last_name']
+    dob = data['dob']
+    phone_number = data['phone_number']
+    password = data['password']
+    address = data['address']
+    user_name = data['user_name']
+    email_id = data['email_id']
+
+    # Execute the SQL query to insert a new patient
+    cursor.execute(
+        "INSERT INTO information.patient_registration (first_name, last_name, dob, phone_number, password, address, user_name, email_id) "
+        "VALUES (%s, %s, %s, %s, %s, %s, %s, %s)",
+        (first_name, last_name, dob, phone_number, password, address, user_name, email_id)
+    )
+    conn.commit()
+    cursor.close()
+
+    return jsonify({'message': 'Patient registered successfully!'}), 200
+
+# Login Endpoint
+@app.route('/login', methods=['POST'])
+def login():
+    data = request.get_json()
+    cursor = conn.cursor()
+
+    # Extract data from the request
+    user_name = data['user_name']
+    password = data['password']
+
+    # Execute the SQL query to check login credentials
+    cursor.execute(
+        "SELECT * FROM information.doctor_registration WHERE user_name = %s AND password = %s",
+        (user_name, password)
+    )
+    doctor = cursor.fetchone()
+
+    if doctor:
+        cursor.close()
+        return jsonify({'message': f'Doctor {user_name} login successful!'}), 200
+
+    cursor.execute(
+        "SELECT * FROM information.patient_registration WHERE user_name = %s AND password = %s",
+        (user_name, password)
+    )
+    patient = cursor.fetchone()
+
+    if patient:
+        cursor.close()
+        return jsonify({'message': f'Patient {user_name} login successful!'}), 200
+
+    cursor.close()
+    return jsonify({'message': 'Invalid credentials!'}), 401
+
+if __name__ == '__main__':
+    app.run(debug=True)
+
+"""
