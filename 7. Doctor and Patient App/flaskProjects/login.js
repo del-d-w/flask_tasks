@@ -19,7 +19,7 @@ loginForm.addEventListener("submit", (event) => {
     .then((response) => response.json())
     .then((data) => {
       if (data.message=='Invalid credentials!'){
-        errorMessage.textContent = data.message;
+        errorMessage.textContent = "Invalid Username or Password";
       }
       else{
       console.log(data);
