@@ -101,8 +101,6 @@ if __name__ == '__main__':
     app.run(debug=True)
 
 """
-# With out SQL Alchemy
-
 from flask import Flask, request, jsonify
 import psycopg2
 from flask_cors import CORS
@@ -116,7 +114,7 @@ conn = psycopg2.connect(
     port='5432',
     database='practice',
     user='postgres',
-    password='12345'
+    password='c98xa5'
 )
 
 # Doctor Registration Endpoint
@@ -132,16 +130,33 @@ def register_doctor():
     phone_number = data['phone_number']
     password = data['password']
     address = data['address']
-    doctor_id=data['doctor_id']
+    doctor_id = data['doctor_id']
     specialization = data['specialization']
     user_name = data['user_name']
     email_id = data['email_id']
 
+    # Check if the username already exists in the patient or doctor table
+    cursor.execute(
+        "SELECT * FROM information.doctor_registration WHERE user_name = %s",
+        (user_name,)
+    )
+    existing_doctor = cursor.fetchone()
+
+    cursor.execute(
+        "SELECT * FROM information.patient_registration WHERE user_name = %s",
+        (user_name,)
+    )
+    existing_patient = cursor.fetchone()
+
+    if existing_doctor or existing_patient:
+        cursor.close()
+        return jsonify({'message': 'Username already exists!'}), 200
+
     # Execute the SQL query to insert a new doctor
     cursor.execute(
-        "INSERT INTO information.doctor_registration (first_name, last_name, dob, phone_number, password, address,doctor_id, specialization, user_name, email_id) "
-        "VALUES (%s, %s, %s, %s, %s, %s, %s, %s,%s,%s)",
-        (first_name, last_name, dob, phone_number, password, address,doctor_id, specialization, user_name, email_id)
+        "INSERT INTO information.doctor_registration (first_name, last_name, dob, phone_number, password, address, doctor_id, specialization, user_name, email_id) "
+        "VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
+        (first_name, last_name, dob, phone_number, password, address, doctor_id, specialization, user_name, email_id)
     )
     conn.commit()
     cursor.close()
@@ -164,6 +179,23 @@ def register_patient():
     user_name = data['user_name']
     email_id = data['email_id']
 
+    # Check if the username already exists in the patient or doctor table
+    cursor.execute(
+        "SELECT * FROM information.doctor_registration WHERE user_name = %s",
+        (user_name,)
+    )
+    existing_doctor = cursor.fetchone()
+
+    cursor.execute(
+        "SELECT * FROM information.patient_registration WHERE user_name = %s",
+        (user_name,)
+    )
+    existing_patient = cursor.fetchone()
+
+    if existing_doctor or existing_patient:
+        cursor.close()
+        return jsonify({'message': 'Username already exists!'}), 409
+
     # Execute the SQL query to insert a new patient
     cursor.execute(
         "INSERT INTO information.patient_registration (first_name, last_name, dob, phone_number, password, address, user_name, email_id) "
@@ -175,6 +207,7 @@ def register_patient():
 
     return jsonify({'message': 'Patient registered successfully!'}), 200
 
+
 # Login Endpoint
 @app.route('/login', methods=['POST'])
 def login():
@@ -185,7 +218,7 @@ def login():
     user_name = data['user_name']
     password = data['password']
 
-    # Execute the SQL query to check login credentials
+    # Execute the SQL query to check login credentials for a doctor
     cursor.execute(
         "SELECT * FROM information.doctor_registration WHERE user_name = %s AND password = %s",
         (user_name, password)
@@ -195,19 +228,20 @@ def login():
     if doctor:
         cursor.close()
         return jsonify({'message': f'Doctor {user_name} login successful!'}), 200
-
+    
+    # Execute the SQL query to check login credentials for a patient
     cursor.execute(
         "SELECT * FROM information.patient_registration WHERE user_name = %s AND password = %s",
         (user_name, password)
     )
     patient = cursor.fetchone()
-
     if patient:
         cursor.close()
         return jsonify({'message': f'Patient {user_name} login successful!'}), 200
 
     cursor.close()
     return jsonify({'message': 'Invalid credentials!'}), 401
+
 
 if __name__ == '__main__':
     app.run(debug=True)
