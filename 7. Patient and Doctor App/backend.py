@@ -150,7 +150,7 @@ def register_doctor():
 
     if existing_doctor or existing_patient:
         cursor.close()
-        return jsonify({'message': 'Username already exists!'}), 200
+        return jsonify({'message': 'Username already exists!'}), 409
 
     # Execute the SQL query to insert a new doctor
     cursor.execute(
