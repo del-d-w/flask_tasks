@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registration Portal</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h2>Welcome to the Registration Portal</h2>
+      <button class="button1" onclick="redirectTo('login.html')">Login</button>
+      <button class="button1" onclick="redirectTo('doctor-registration.html')">
+        Doctor Registration
+      </button>
+      <button class="button1" onclick="redirectTo('patient-registration.html')">
+        Patient Registration
+      </button>
+    </div>
+
+    <script>
+      function redirectTo(url) {
+        window.location.href = url;
+      }
+    </script>
+  </body>
+</html>
