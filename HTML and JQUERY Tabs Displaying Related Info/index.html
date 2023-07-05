@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Related Blogs</title>
+  <style>
+    .active-cat {
+      text-decoration: none;
+      color: inherit;
+    }
+    
+    .active-cat.active {
+      text-decoration: underline;
+      color: #fe7755;
+    }
+    
+    .blog-filter ul li {
+      display: inline-block;
+      margin-right: 20px;
+      margin-bottom: 15px;
+      font-family: "Roboto";
+      font-size: 20px;
+    }
+    
+    .blog-filter ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    
+    .blog-list {
+      display: block;
+    }
+    
+    .blog-list .blog-item {
+      display: none;
+    }
+    
+    .blog-list .blog-item.slice-show {
+      display: block;
+    }
+    
+    #load-more-btn {
+      display: none;
+      margin-top: 20px;
+    }
+  </style>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      var blogsPerPage = 3;
+      var totalBlogs = $(".blog-item").length;
+      var numPages = Math.ceil(totalBlogs / blogsPerPage);
+      var currentPage = 1;
+      
+      // Show initial blogs
+      $(".blog-item").slice(0, blogsPerPage).addClass("slice-show");
+      
+      // Show or hide Load More button
+      if (numPages > 1) {
+        $("#load-more-btn").show();
+      }
+      
+      // Load More button click event
+      $("#load-more-btn").click(function() {
+        var startIndex = currentPage * blogsPerPage;
+        var endIndex = startIndex + blogsPerPage;
+        
+        // Show next set of blogs
+        $(".blog-item").slice(startIndex, endIndex).addClass("slice-show");
+        
+        // Update current page
+        currentPage++;
+        
+        // Hide Load More button if all blogs are displayed
+        if (currentPage >= numPages) {
+          $("#load-more-btn").hide();
+        }
+      });
+      
+      // Category filter click event
+    
+		$(".active-cat").click(function() {
+        $(".active-cat").removeClass("active");
+        $(this).addClass("active");
+
+        var category = $(this).attr("data-category");
+        if (category === "all") {
+          $(".blog-item").removeClass("slice-show");
+          $(".blog-item").slice(0, blogsPerPage).addClass("slice-show");
+          numPages = Math.ceil(totalBlogs / blogsPerPage); // Update numPages for the "All" category
+        } else {
+          $(".blog-item").removeClass("slice-show");
+          $("." + category).slice(0, blogsPerPage).addClass("slice-show");
+          numPages = Math.ceil($("." + category + ".slice-show").length / blogsPerPage); // Update numPages for the selected category
+        }
+
+        // Reset pagination variables
+        currentPage = 1;
+
+        // Show or hide Load More button
+        if (numPages > 1) {
+          $("#load-more-btn").show();
+        } else {
+          $("#load-more-btn").hide();
+        }
+      });
+
+    });
+  </script>
+</head>
+<body>
+  <h1>Related Blogs</h1>
+  <div class="blog-filter">
+  <ul>
+    <li><a class="active-cat active" href="#" data-category="all">All</a></li>
+    <li><a class="active-cat" href="#" data-category="software-development">Software Development</a></li>
+    <li><a class="active-cat" href="#" data-category="telehealth">Telehealth</a></li>
+    
+     <li><a class="active-cat" href="#" data-category="remote-patient-monitoring">Remote Patient Monitoring</a></li>
+    <!-- Add links for other categories -->
+    <li><a class="active-cat" href="#" data-category="interoperability">Interoperability</a></li>
+    <li><a class="active-cat" href="#" data-category="cloud-and-devops">Cloud and DevOps</a></li>
+    <li><a class="active-cat" href="#" data-category="fhir">FHIR</a></li>
+    <li><a class="active-cat" href="#" data-category="artificial-intelligence">Artificial Intelligence</a></li>
+    <li><a class="active-cat" href="#" data-category="ehr">EHR</a></li>
+    <li><a class="active-cat" href="#" data-category="cyber-security">Cyber Security</a></li>
+    <li><a class="active-cat" href="#" data-category="compliance">Compliance</a></li>
+
+  </ul>
+  
+  </div>
+  <div class="blog-list">
+    <div class="blog-item software-development">
+      <h1 class="blog-title">Software Development Blog</h1>
+      <p>This is the content of Software Development Blog</p>
+    </div>
+    <!-- Add more blog items with appropriate classes -->
+    
+    <div class="blog-item telehealth remote-patient-monitoring">
+      <h1 class="blog-title">Remote Patient Monitoring Blog</h1>
+      <p>This is the content of Remote Patient Monitoring Blog</p>
+    </div>
+    <!-- Add more blog items with appropriate classes -->
+    
+    <div class="blog-item interoperability">
+      <h1 class="blog-title">Interoperability Blog</h1>
+      <p>This is the content of Content Marketing Blog</p>
+    </div>
+    
+    <div class="blog-item cloud-and-devops">
+      <h1 class="blog-title">Cloud and DevOps Blog</h1>
+      <p>This is the content of Cloud and DevOps Blog</p>
+    </div>
+    
+    <div class="blog-item fhir">
+      <h1 class="blog-title">FHIR Blog</h1>
+      <p>This is the content of FHIR Blog</p>
+    </div>
+    
+    <div class="blog-item artificial-intelligence">
+      <h1 class="blog-title">Artificial Intelligence Blog</h1>
+      <p>This is the content of Artificial Intelligence Blog</p>
+    </div>
+    
+    <div class="blog-item ehr">
+      <h1 class="blog-title">EHR Blog</h1>
+      <p>This is the content of EHR Blog</p>
+    </div>
+    
+    <div class="blog-item cyber-security">
+      <h1 class="blog-title">Cyber Security Blog</h1>
+      <p>This is the content of Cyber Security Blog</p>
+    </div>
+    
+    <div class="blog-item compliance">
+      <h1 class="blog-title">Compliance Blog</h1>
+      <p>This is the content of Compliance Blog</p>
+    </div> 
+  
+  </div>
+  
+   <button id="load-more-btn">Load More</button>
+  
+</body>
+</html>
