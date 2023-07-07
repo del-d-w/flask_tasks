@@ -1,3 +1,73 @@
+
+<!--https://codepen.io/bebjakub/pen/jWoYEO
+
+<script>
+        $(document).ready(function() {
+          var blogsPerPage = 10;
+          var totalBlogs = $(".blog-items").length;
+          var numPages = Math.ceil(totalBlogs / blogsPerPage);
+          var currentPage = 1;
+          var currentCategory = "all"; // Track the currently selected category
+          
+          // Show initial blogs
+          $(".blog-items").slice(0, blogsPerPage).addClass("slice-show");
+          
+          // Show or hide Load More button
+          if (numPages > 1) {
+            $("#load-more-btn").show();
+          }
+          
+        // Load More button click event
+    $("#load-more-btn").click(function() {
+      var startIndex = currentPage * blogsPerPage;
+      var endIndex = startIndex + blogsPerPage;
+    
+      // Show next set of blogs from the current category
+      $("." + currentCategory + ".blog-items").slice(startIndex, endIndex).toggleClass("slice-show");
+    
+      // Update current page
+      currentPage++;
+    
+      // Hide Load More button if all blogs are displayed
+      if (currentPage >= numPages) {
+        $("#load-more-btn").hide();
+      }
+    });
+    
+          
+          // Category filter click event
+          $(".active-cat").click(function() {
+            $(".active-cat").removeClass("active");
+            $(this).addClass("active");
+    
+            var category = $(this).attr("data-category");
+            var categoryBlogs = $("." + category);
+    
+            // Update totalBlogs and numPages for the selected category
+            totalBlogs = category === "all" ? $(".blog-items").length : categoryBlogs.length;
+            numPages = Math.ceil(totalBlogs / blogsPerPage);
+    
+            // Reset pagination variables
+            currentPage = 1;
+            currentCategory = category; // Update the current category
+    
+            // Show or hide Load More button based on the number of blogs in the category
+            if (numPages > 1 && totalBlogs > blogsPerPage) {
+              $("#load-more-btn").show();
+            } else {
+              $("#load-more-btn").hide();
+            }
+    
+            // Hide all blogs and show the initial set of blogs in the selected category
+            $(".blog-items").removeClass("slice-show").addClass("slice-hidden");
+            categoryBlogs.slice(0, blogsPerPage).removeClass("slice-hidden").addClass("slice-show");
+          });
+    
+        });
+      </script>
+--!>
+
+
 <!DOCTYPE html>
 <html>
 <head>
