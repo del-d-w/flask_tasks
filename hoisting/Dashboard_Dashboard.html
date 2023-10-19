@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navigation Bar</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color:white;
+    color: #333;
+    padding: 10px 20px;
+    box-shadow:1px 1px 5px black;
+}
+
+.left-side {
+    flex: 1;
+    text-align: left;
+}
+
+.dashboard-name {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.right-side {
+    display: flex;
+    align-items: center;
+}
+
+.profile-photo {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.person-name {
+    font-size: 18px;
+}
+.welcome
+{
+    width:100%;
+    height:150px;
+    background-image:url(./welcome\ back.png);
+    background-repeat:no-repeat;
+    background-size:100% 150px;
+
+}
+#p1{
+    color: white;
+    font-size:25px;
+    padding-left:50px;
+    padding-top:25px;
+}
+#p2
+{
+    color: white;
+    font-size:25px;
+    padding-left:50px;
+}
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 20px;
+    margin-top: 20px;
+
+}
+.box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    /* background-color:rgb(220, 223, 225); */
+    box-shadow:1px 1px 2px black ;
+    border-style:solid 1px ; 
+    background-color: white;
+}
+
+.box i {
+    font-size: 36px;
+    margin-bottom: 10px;
+    color:rgb(52, 52, 212);
+}
+
+.box p {
+    font-size: 18px;
+    font-weight: bold;
+    color:crimson;
+    text-shadow:1px 1px 3px black;
+}
+
+ 
+.photo{
+    width: 30px;
+    height:30 px;
+    border-radius: 50%;
+    margin-right: 10px;
+} 
+.Maindiv{
+    width:100%;
+    height:350px;
+    display: flex;
+    margin-top:20px;
+
+}
+.topDoctores
+{
+    width:30%;
+    height:320px;
+   background-color:rgb(220, 223, 225);
+    box-shadow:2px 2px 4px black;
+    margin-top:10px;
+}
+.doctor1{
+    width:70%;
+    height: 50px;
+    background-color:white;
+    box-shadow:2px 2px 4px black;
+    display:flex;
+    
+}
+.summary{
+    width:30%;
+    height:320px;
+    margin-left:50px;
+   background-color:rgb(220, 223, 225);
+    box-shadow:2px 2px 4px black;
+    margin-top:10px;
+
+}
+.Users{
+    width:40%;
+    height:130px;
+    display: block;
+    text-align: center;
+    /* background-color:white;
+    box-shadow:2px 2px 4px black; */
+    margin-left: 10px;
+}
+.Users i
+{
+font-size: 36px;
+    margin-bottom: 10px;
+    color: blue;
+}
+.Doctors{
+    width:40%;
+    height:130px;
+    display: block;
+    text-align: center;
+    /* background-color:white;
+    box-shadow:2px 2px 4px black; */
+    margin-left:30px;
+}
+.Doctors i
+{
+font-size: 36px;
+    margin-bottom: 10px;
+    color: orange;
+}
+.Patients{
+    width:40%;
+    height:130px;
+    display: block;
+    text-align: center;
+    /* background-color:white;
+    box-shadow:2px 2px 4px black; */
+    margin-left: 10px;
+}
+.Patients i{
+    font-size: 36px;
+    margin-bottom: 10px;
+    color: dodgerblue;
+}
+.Clinic{
+    width:40%;
+    height:130px;
+    display: block;
+    text-align: center;
+    /* background-color:white;
+    box-shadow:2px 2px 4px black; */
+    margin-left:30px;
+
+}
+.Clinic i{
+    font-size: 36px;
+    margin-bottom: 10px;
+    color:forestgreen;
+}
+.div1{
+    width: 100%;
+    height:120px;
+    /* background-color: chocolate; */
+    display:flex;
+}
+.div2{
+    width: 100%;
+    height:120px;
+    /* background-color: rgb(210, 30, 153); */
+    display:flex;
+    margin-top:20px;
+    
+}
+ .health {
+
+            width:35%;
+            height:280px;        
+            flex: 1;
+            background-color:rgb(220, 223, 225);
+            border: 1px solid #ccc;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            margin-left: 10px;
+            margin-top:10px;
+        }
+
+        .circle-container {
+            width: 150px;
+            height: 150px;
+            background-color: #f0f0f0;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            margin: 20px auto;
+            position: relative;
+        }
+
+        /* Styling for the circle */
+        .circle {
+            width: 100px;
+            height: 100px;
+            background-color: transparent;
+            border: 10px solid #3498db;
+            border-radius: 50%;
+            position: absolute;
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+        }
+
+        /* Styling for the percentage text */
+        .percentage {
+            font-size: 18px;
+            color: #333;
+            font-weight: bold;
+        }
+
+        /* Styling for the labels */
+        .label {
+            font-size: 14px;
+            color: #666;
+        }
+        .top_doctors{
+            text-align: center;
+            color:rgb(3, 228, 29);
+            text-shadow:1px 1px 3px black;
+        }
+        .summary1
+        {
+            text-align: center; 
+            color:rgb(3, 228, 29);
+            text-shadow:1px 1px 3px black;
+        }
+        .dashboard-name{
+            color:rgb(66, 66, 196);
+        }
+        .total_booking
+        {
+            color:rgb(3, 228, 29);
+            text-shadow:1px 1px 3px black;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="left-side">
+            <span class="dashboard-name">Dashboard</span>
+        </div>
+        <div class="right-side">
+            <img src="./phote1.webp" alt="Profile Photo" class="profile-photo">
+            <span class="person-name">John Doe</span>
+        </div>
+    </nav>
+    <div class="welcome">
+       <p id="p1">Welcome,ADMIN</p>
+       <p id="p2">In your Dashboard you can do the following things!</p>
+    </div>
+    <div class="container">
+        <div class="box">
+            <i class="fas fa-house-chimney-medical"></i>
+            <p>Add Clinic</p>
+        </div>
+        <div class="box">
+            <i class="fas fa-user"></i>
+            <p>Add Doctor</p>
+        </div>
+        <div class="box">
+            <i class="fas fa-user-nurse"></i>
+            <p>Add User</p>
+        </div>
+        <div class="box">
+            <i class="fas fa-hospital-user"></i>
+            <p>Add Clinic Admin</p>
+        </div>
+        <div class="box">
+            <i class="fas fa-calendar-days"></i>
+            <p>Add Bookings</p>
+        </div>
+        <div class="box">
+            <i class="fas fa-user-doctor"></i>
+            <p>Add Nurse</p>
+        </div>
+    </div>
+        <div class="Maindiv">
+                <div class="topDoctores">
+                    <p class="top_doctors">Top Rated Doctors</p>
+                    <div class="doctor1">
+                    <img src="./phote1.webp" alt="wrong phote" class="photo">
+                    <p>Dr.Prathyusha</p>
+                    </div><br>
+                    <div class="doctor1">
+                        <img src="./phote1.webp" alt="wrong phote" class="photo">
+                        <p>Dr.Ramya</p>
+                        </div><br>
+                        <div class="doctor1">
+                            <img src="./phote1.webp" alt="wrong phote" class="photo">
+                            <p>Dr.Mounika</p>
+                            </div><br>
+                            <div class="doctor1">
+                                <img src="./phote1.webp" alt="wrong phote" class="photo">
+                                <p>Dr.Swathi</p>
+                                </div><br>
+                </div>
+                <div class="summary">
+                    <p class="summary1">Total Counts</p>
+                    <div class="div1">
+                    <div class="Users">
+                        <i class="fa-solid fa-user"></i>
+                        <p>140</p>
+                        <p>Total Users</p>
+                    </div>
+                    <div class="Doctors">
+                        <i class="fa-solid fa-user-doctor"></i>
+                        <p>40</p>
+                        <p>Total Doctors</p>
+                    </div>
+                    </div>
+                    <div class="div2">
+                    <div class="Patients">
+                        <i class="fa-solid fa-bed-pulse"></i>
+                        <p>60</p>
+                        <p>Total Patients</p>
+                    </div>
+                    <div class="Clinic">
+                        <i class="fa-solid fa-house-chimney-medical"></i>
+                        <p>120</p>
+                        <p>Total Clinic</p>
+                    </div>
+                    </div>
+                </div>
+
+            <div class="health">
+                <p class="total_booking">Total Bookings</p>
+            <div class="circle-container">
+                <div class="circle"></div>
+                <div class="percentage">500</div>
+                <div class="label">Bookings</div>
+            </div>
+        </div>
+
+        </div>
+
+    </div>
+</body>
+</html>
+
+

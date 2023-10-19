@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Details</title>
+   <style> 
+body,h1 h2, p {
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+}
+
+.container {
+    max-width:100%;
+    margin: 0 auto;
+    /* background-color: #fff; */
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-top: 20px;
+    /* background-image:url(./patients_background__Image.png);
+    background-repeat:no-repeat;
+    background-size: cover; */
+}
+
+header {
+    /* background-color:rgb(237, 140, 104); */
+    color: rgb(12, 12, 12);
+    text-align: center;
+    padding: 10px 0;
+    width: 40%;
+    margin-left:310px;
+    height:50px;
+}
+
+main {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-left:100px;
+
+}
+
+.patient-form {
+    flex: 1;
+    /* background-color: #ffffff; */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+    /* margin-right:10px; */
+    background-color:white;
+    
+    
+}
+
+.patient-list {
+    flex: 1;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+}
+
+form {
+    max-width:400px;
+    margin: 0 auto;
+   
+   
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="date"],
+input[type="tel"],
+input[type="email"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    background-color: #3498db;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #2980b9;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+.patient-item {
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.patient-item:last-child {
+    margin-bottom: 0;
+}
+.patient_image{
+
+height: 500px;
+width: 60%;
+background-image:url(./bg2.jpg);
+background-size:cover;
+background-repeat:no-repeat;
+background-size:70% 400px;
+margin-top: 100px;
+}
+.patient
+{
+    width:80%;
+    background-image:url(./bg1.jpg);
+    margin-left: 80px;
+    background-repeat:no-repeat;
+    background-size:cover;
+}
+
+   </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Patient Details</h1>
+        </header>
+        <div class="patient">
+        <main>
+            <div class="patient_image">
+                </div>
+            <section class="patient-form">
+                <form>
+                    <div class="form-group">
+                        <label for="patient-mrn">Patient MRN:</label>
+                        <input type="text" id="patient-mrn" name="patient-mrn" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="last-name">Last Name:</label>
+                        <input type="text" id="last-name" name="last-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="first-name">First Name:</label>
+                        <input type="text" id="first-name" name="first-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="middle-name">Middle Name:</label>
+                        <input type="text" id="middle-name" name="middle-name">
+                    </div>
+                    <div class="form-group">
+                        <label for="date-of-birth">Date of Birth:</label>
+                        <input type="date" id="date-of-birth" name="date-of-birth" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Address:</label>
+                        <input type="text" id="address" name="address">
+                    </div>
+                    <div class="form-group">
+                        <label for="cell-no">Phone No:</label>
+                        <input type="tel" id="cell-no" name="cell-no">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Id:</label>
+                        <input type="email" id="email" name="email">
+                    </div>
+                    <button type="submit">Add Patient</button>
+                </form>
+            </section>
+            </div>
+        </main>
+    </div>
+</body>
+</html> 
+
+
+
+

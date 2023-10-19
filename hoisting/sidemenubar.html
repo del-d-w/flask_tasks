@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Side Menu UI</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        .menu {
+            width: 250px;
+            /* background-color:black; */
+            background-color:rgb(46, 44, 44);
+            color: #fff;
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            padding: 20px 10px;
+        }
+
+        .menu img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin: 0 auto;
+            display: block;
+            background-color: #fff;
+        }
+
+        .menu .email {
+            text-align: center;
+            margin: 10px 0;
+        }
+
+        .menu ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .menu li {
+            padding: 10px;
+            text-align: center;
+        }
+
+        .menu a {
+            color: #fff;
+            text-decoration: none;
+        }
+        .logout{
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            width:50%;
+            height:40px; 
+            border-radius:10px 10px 10px 10px;
+            box-shadow:1px 1px 3px bisque;
+            
+        }
+       
+
+        .content {
+            flex-grow: 1;
+            padding: 20px;
+        }
+        #websiteFrame {
+            width:80%;
+            height: 700px; 
+            border: none;
+            margin-left: 250px; 
+        }
+        #websiteFrame {
+            background-color: #fff;
+        }
+        .Dashboard ,.Patient_List, .Book_Appointment, .Appointment_List{
+            width:50%;
+            height:40px;
+            border-radius:10px 10px 10px 10px;
+            box-shadow:1px 1px 3px bisque;
+        }
+      .logout{
+        background-color: rgb(65, 65, 198);
+       }
+    </style>
+</head>
+<body>
+    <div class="menu">
+        <img src="./phote1.webp" alt="Profile Image">
+        <p class="email">user@example.com</p>
+        <ul>
+            <li id="Dashboard"> <button class="Dashboard">Dashboard</button></li>
+            <li id="Patient List"><button class="Patient_List">Patient list</button></li>
+            <li id="Book Appointment"><button class="Book_Appointment">Book Appointment</button></li>
+            <li id="Appointment list"><button class="Appointment_List">Appointment list</button></li>
+
+        </ul>
+        <button class="logout"  id="logoutButton">Logout</button>
+  </div>
+    <div class="content">
+        <iframe id="websiteFrame" src="" frameborder="0" width="100%" height="100%"></iframe>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const websiteFrame = document.getElementById("websiteFrame");
+            const website1Btn = document.getElementById("Dashboard");
+            const website2Btn = document.getElementById("Patient List");
+            const website3Btn = document.getElementById("Book Appointment");
+            const website4Btn=document.getElementById("Appointment list");
+            function loadWebsite(url) {
+                websiteFrame.src = url;
+            }
+
+            website1Btn.addEventListener("click", function () {
+                loadWebsite("./Dashboard_Dashboard.html");
+            });
+
+            website2Btn.addEventListener("click", function () {
+                loadWebsite("./Patient_PatientList.html");
+            });
+
+            website3Btn.addEventListener("click", function () {
+                loadWebsite("./Book_Appointment_time.html");
+            });
+            website4Btn.addEventListener("click", function () {
+                loadWebsite("./AppointmentList.html");
+            });
+
+        });
+        document.addEventListener("DOMContentLoaded", function () {
+            const logoutButton = document.getElementById("logoutButton");
+
+            logoutButton.addEventListener("click", function () {
+
+                alert("Logged out successfully");
+                window.location.href = "Login.html";
+            });
+        });
+    </script>
+</body>
+</html>
+
+
+

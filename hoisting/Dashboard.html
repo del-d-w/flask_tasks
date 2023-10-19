@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Profile</title>
+    <style>
+        /* Default styles */
+
+        /* Styling for the container div */
+        .container {
+            display: flex;
+            flex-wrap: wrap; /* Allow elements to wrap to the next row */
+            justify-content: space-between;
+            margin: 20px auto;
+            max-width: 800px;
+        }
+
+        .profile {
+            flex: 1;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Styling for the profile image */
+        .profile img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin: 0 auto 10px;
+            display: block;
+        }
+
+        /* Styling for the name */
+        .profile h4 {
+            font-size: 18px;
+            color: #333;
+            margin: 10px 0;
+        }
+
+        /* Styling for the table */
+        .profile table {
+            width: 100%;
+            text-align: left;
+            margin-top: 10px;
+        }
+
+        /* Styling for table cells */
+        .profile td {
+            padding: 5px 0;
+            font-size: 14px;
+            color: #666;
+        }
+
+        /* Alternate row background color */
+        .profile tr:nth-child(even) {
+            background-color: #f0f0f0;
+        }
+
+        .health {
+            flex: 1;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            margin-left: 10px;
+            margin-top: 20px; /* Add some space between profile and health */
+        }
+
+        .circle-container {
+            width: 150px;
+            height: 150px;
+            background-color: #f0f0f0;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            margin: 20px auto;
+            position: relative;
+        }
+
+        /* Styling for the circle */
+        .circle {
+            width: 100px;
+            height: 100px;
+            background-color: transparent;
+            border: 10px solid #3498db;
+            border-radius: 50%;
+            position: absolute;
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+        }
+
+        /* Styling for the percentage text */
+        .percentage {
+            font-size: 18px;
+            color: #333;
+            font-weight: bold;
+        }
+
+        /* Styling for the labels */
+        .label {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .total,
+        .cancel {
+            flex: 1;
+            text-align: center;
+            background-size: cover;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            margin-top: 20px;
+        }
+        .total{
+            background-image:url(./patient_2.jpg);
+        }
+        .cancel{
+            background-image:url(./dashboard_1.jpg);
+        }
+
+        h3 {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        /* Media queries for responsiveness */
+
+        /* Tablet view */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column; /* Stack elements vertically */
+            }
+
+            .health {
+                margin-left: 0; /* Remove left margin for health in mobile view */
+            }
+
+            .profile, .health, .total, .cancel {
+                margin: 20px auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="profile">
+            <img src="./phote1.webp" alt="Profile Image">
+            <h4>Prathyusha Panta</h4>
+            <table>
+                <tr>
+                    <td>22 years</td>
+                    <td>B+ Blood</td>
+                </tr>
+                <tr>
+                    <td>160cm Height</td>
+                    <td>40Kg weight</td>
+                </tr>
+            </table>
+        </div>
+        <div class="health">
+            <div class="circle-container">
+                <div class="circle"></div>
+                <div class="percentage">75%</div>
+                <div class="label">General Health</div>
+            </div>
+            <div class="circle-container">
+                <div class="circle"></div>
+                <div class="percentage">85%</div>
+                <div class="label">Water Balance</div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="total">
+            <h3>Total Appointment</h3>
+            <h3>1653</h3>
+        </div>
+        <div class="cancel">
+            <h3>Appointment Cancelled</h3>
+            <h3>200</h3>
+        </div>
+    </div>
+</body>
+</html>

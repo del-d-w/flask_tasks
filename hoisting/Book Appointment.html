@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Appointment</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        /* Container for the appointment options */
+        .appointment-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            max-width: 600px; 
+            margin: 0 auto;
+            width:50%;
+            height:500px;
+            /* border: 1px solid #131212; */
+            /* background-color: beige; */
+            margin-left:300px;
+            /* margin-top:20px; */
+        }
+
+        
+        .appointment-option {
+            width: calc(50% - 10px);
+            margin-bottom: 20px; 
+            border: 1px solid black;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        
+        .appointment-option:hover,
+        .selected {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        
+        .selected {
+            cursor: default;
+        }
+        .heading
+        {
+            width:30%;
+            height:70px;
+            /* border: 1px solid #121111; */
+           margin-left: 20px;
+
+        }
+    .next-button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    text-decoration-line:none;
+    margin-left: 550px;
+  
+}
+body{
+
+    background-image:url(https://images.unsplash.com/photo-1436076838903-fd4dd41d99c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80);
+    background-repeat:no-repeat;
+    background-size: cover;
+}
+h1{
+    color:crimson;
+    text-shadow:2px 2px 2px black;
+}
+.Infectious{
+    width:60px;
+    height:50px;
+}
+    
+    </style>
+</head>
+<body>
+    <div class="heading">
+        <h1>Book Appointment</h1>
+    </div>
+    <div class="appointment-container">
+        <div class="appointment-option" onclick="selectOption(1)">
+        <img src="./square-virus-solid.svg" alt="" class="Infectious">
+        <p>Infectious diseases</p>
+        </div>
+        <div class="appointment-option" onclick="selectOption(2)">
+            <img src="./tooth-solid.svg" alt="" class="Infectious">
+            <p>Tooth Pain</p>
+        </div>
+        <div class="appointment-option" onclick="selectOption(3)">
+            <img src="./gratipay.svg" alt="" class="Infectious">
+            <p>coronary artery disease</p>
+        </div>
+        <div class="appointment-option" onclick="selectOption(4)">
+         <img src="./istockphoto-1320153696-1024x1024.jpg" alt="" class="Infectious">  
+        <p>High Blood Pressure</p>
+        </div>
+        <div class="appointment-option" onclick="selectOption(5)">
+            <img src="./cancer.png" alt=""class="Infectious">
+            <p>Cancer</p>
+        </div>
+    </div>
+    <div class="container">
+        <a href="Bookin appointment details.html" class="next-button">Next</a>
+
+    </div>
+    <script>
+        let selectedOption = null;
+
+        function selectOption(optionNumber) {
+            if (selectedOption) {
+                selectedOption.classList.remove('selected');
+            }
+
+            const option = document.querySelector(`.appointment-option:nth-child(${optionNumber})`);
+            option.classList.add('selected');
+            selectedOption = option;
+        }
+    </script>
+</body>
+</html>
+
+

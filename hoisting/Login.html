@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <style>
+        .main_div {
+            width: 80%;
+            max-width: 400px;
+            margin: 80px auto;
+            padding: 20px;
+            background-color: rgb(37, 198, 198);
+            border-radius:70px;
+            box-shadow:2px 2px 4px black;
+        }
+
+        .username, .password, .login {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .username i, .password i, .login i {
+            font-size: 30px;
+            width: 50px;
+            height: 50px;
+            margin-right: 15px;
+            border-radius: 50%;
+            background-color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+           
+        }
+
+        input, button {
+            flex: 1;
+            height: 40px;
+            border: none;
+            border-radius: 20px;
+            padding: 0 15px;
+        }
+
+        button {
+            background-color:white;
+            color: rgb(1, 250, 250);
+            font-size:18px;
+            cursor: pointer;
+        } 
+
+        ::placeholder {
+            text-align: center;
+        }
+
+        /* a {
+            text-decoration: none;
+            color: rgb(1, 250, 250);
+        } */
+
+        h3 {
+            text-align: center;
+            text-transform: uppercase;
+            color: white;
+            text-shadow:1px 1px 4px black;
+        }
+
+        h5 {
+            text-align: center;
+            font-size: 15px;
+        }
+        @media (max-width: 768px) {
+            .main_div {
+                width: 90%;
+            }
+        }  
+    </style>
+</head>
+<body>
+    <div class="main_div">
+        <h3>User Login</h3>
+        <form action="./sidemenubar.html">
+        <div class="username">
+            <div id="user">
+                <i class="fa-regular fa-user"></i>
+            </div>
+            <input type="text" placeholder="Username" required>
+        </div>
+        <div class="password">
+            <div id="lock">
+                <i class="fa-solid fa-lock"></i>
+            </div>
+            <input type="password" placeholder="Password" required>
+        </div> 
+        <div class="login">
+            <div id="arrow">
+                <i class="fa-solid fa-arrow-right-to-bracket"></i>
+            </div>
+            <!-- <button><a href="./sidemenubar.html">LOGIN</a></button> -->
+            <button>LOGIN</button>
+        </div>
+        <div>
+            <h5>Forgot password?</h5>
+        </div>
+        </form>
+    </div>
+</body>
+</html>
+
