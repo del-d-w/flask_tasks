@@ -227,3 +227,164 @@ def delete_todo(id):
 
 if __name__ == '__main__':
     app.run(debug=True)
+
+
+"""
+# With SQLAlchemy
+# -------------------------------------------------------------------------------------------------
+
+from flask import Flask, request, jsonify
+from flask_jwt_extended import JWTManager, create_access_token, create_refresh_token, jwt_required
+from flask_sqlalchemy import SQLAlchemy
+from flask_bcrypt import Bcrypt
+
+app = Flask(__name__)
+app.config['JWT_SECRET_KEY'] = 'your-secret-key'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:12345@localhost/employees'  # Change the connection string as per your database setup
+
+db = SQLAlchemy(app)
+bcrypt = Bcrypt(app)
+jwt = JWTManager(app)
+
+class RegisteredUser(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(80), unique=True, nullable=False)
+    password = db.Column(db.String(60), nullable=False)
+
+class TodoUser(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(255), nullable=False)
+    completed = db.Column(db.Boolean, default=False)
+
+@app.route('/register', methods=['POST'])
+def register():
+    try:
+        data = request.get_json()
+        username = data.get('username')
+        password = data.get('password')
+
+        existing_user = RegisteredUser.query.filter_by(username=username).first()
+
+        if existing_user:
+            return jsonify({'message': 'Username already exists'}), 400
+
+        hashed_password = bcrypt.generate_password_hash(password).decode('utf-8')
+
+        new_user = RegisteredUser(username=username, password=hashed_password)
+        db.session.add(new_user)
+        db.session.commit()
+
+        return jsonify({'message': 'Registration successful'}), 200
+
+    except Exception as e:
+        print(f"Error: {str(e}")
+        return jsonify({'message': 'An error occurred.'}), 500
+
+@app.route('/login', methods=['POST'])
+def login():
+    try:
+        data = request.get_json()
+        username = data.get('username')
+        password = data.get('password')
+
+        user = RegisteredUser.query.filter_by(username=username).first()
+
+        if user and bcrypt.check_password_hash(user.password, password):
+            access_token = create_access_token(identity=username)
+            refresh_token = create_refresh_token(identity=username)
+            return jsonify({'access_token': access_token, 'refresh_token': refresh_token}), 200
+        else:
+            return jsonify({'message': 'Invalid username or password'}), 401
+
+    except Exception as e:
+        print(f"Error: {str(e}")
+        return jsonify({'message': 'An error occurred.'}), 500
+
+@app.route('/todos', methods=['GET'])
+@jwt_required()
+def get_todos():
+    try:
+        todos = TodoUser.query.all()
+
+        data = [{'id': todo.id, 'title': todo.title, 'completed': todo.completed} for todo in todos]
+
+        return jsonify(data), 200
+
+    except Exception as e:
+        print(f"Error: {str(e}")
+        return jsonify({'message': 'An error occurred.'}), 500
+
+@app.route('/todos/<id>', methods=['GET'])
+@jwt_required()
+def get_todos_id(id):
+    try:
+        todo = TodoUser.query.get(id)
+
+        if todo:
+            return jsonify({'id': todo.id, 'title': todo.title, 'completed': todo.completed}), 200
+        else:
+            return jsonify({'message': 'Todo not found'}), 404
+
+    except Exception as e:
+        print(f"Error: {str(e}")
+        return jsonify({'message': 'An error occurred.'}), 500
+
+@app.route('/todos', methods=['POST'])
+@jwt_required()
+def create_todo():
+    try:
+        data = request.get_json()
+        title = data.get('title')
+        completed = data.get('completed')
+
+        new_todo = TodoUser(title=title, completed=completed)
+        db.session.add(new_todo)
+        db.session.commit()
+
+        return jsonify({'message': 'Record inserted successfully.'}), 200
+
+    except Exception as e:
+        print(f"Error: {str(e}")
+        return jsonify({'message': 'An error occurred.'}), 500
+
+@app.route('/todos/<id>', methods=['PUT'])
+@jwt_required()
+def update_todo(id):
+    try:
+        data = request.get_json()
+        completed = data.get('completed')
+
+        todo = TodoUser.query.get(id)
+
+        if todo:
+            todo.completed = completed
+            db.session.commit()
+            return jsonify({'message': 'Record updated successfully.'}), 200
+        else:
+            return jsonify({'message': 'Todo not found'}), 404
+
+    except Exception as e:
+        print(f"Error: {str(e}")
+        return jsonify({'message': 'An error occurred.'}), 500
+
+@app.route('/todos/<id>', methods=['DELETE'])
+@jwt_required()
+def delete_todo(id):
+    try:
+        todo = TodoUser.query.get(id)
+
+        if todo:
+            db.session.delete(todo)
+            db.session.commit()
+            return jsonify({'message': 'Record deleted successfully.'}), 200
+        else:
+            return jsonify({'message': 'Todo not found'}), 404
+
+    except Exception as e:
+        print(f"Error: {str(e}")
+        return jsonify({'message': 'An error occurred.'}), 500
+
+if __name__ == '__main__':
+    app.run(debug=True)
+
+"""
